@@ -1,0 +1,17 @@
+﻿1) 修模耗時前三名之原因 Thời gian sửa khuôn và nguyên nhân - (report15_automail) - 06:00 AM
+2) 機種與機台噸數之修模次數 Số lần sửa khuôn theo chủng loại và số tấn máy - (report22_automail) - 06:05 AM
+3) 維修技術員之設備維修耗時 Thời gian sửa máy của nhân viên thiết bị - (report19_automail) - 06:10 AM
+4) 機台噸數之設備故障次數 Số lần thiết bị sự cố theo trọng lượng máy - (report17_automail) - 06:15 AM
+5) 設備移入年份之設備故障次數 Số lần thiết bị sự cố theo năm nhập máy - (report13_automail) - 06:20 AM
+6) 設備機齡之設備故障次數 Số lần thiết bị sự cố theo tuổi máy - (report12_automail) - 06:25 AM
+7) 機台之換模耗時 Thời gian thay khuôn của máy - (report10_automail) - 06:30 AM
+8) 操作人員之換模調機耗時 Thời gian thay khuôn chỉnh máy của nhân viên thao tác - (report11_automail) - 06:35 AM
+9) 機台與機种之修模次數 Số lần sửa khuôn theo chủng loại và máy - (report23_automail) - 06:40 AM
+10) 現場技術人員之修模次數 Số lần sửa khuôn của nhân viên thao tác - (report25_automail) - 06:45 AM
+11) 機種與機台噸數之修模耗時 Thời gian sửa khuôn theo chủng loại và số tấn máy - (report26_automail) - 06:50 AM
+12) 模套、模具與機種修模耗時 Thời gian sửa khuôn theo chủng loại, bộ khuôn và khuôn - (report27_automail) - 06:55 AM
+-----Report hàng ngày-----
+13) 表管理未償貸款 Bảng quản lý khuôn mượn chưa trả - (need_return_mold_report) - 07:00 AM
+14) 報工明細資料和庫存 - (detail_reportwork) - 07:05 AM
+15) 技術未報價資料 - (cxmq014_view) - 07:10 AM
+16) 點檢表點檢狀況，機台異常明細和點檢人報表 - (checklist_report) - 07:15 AM

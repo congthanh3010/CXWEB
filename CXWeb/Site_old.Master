@@ -1,0 +1,99 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site_old.master.cs" Inherits="CXWeb.Site_old" %>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>EIP</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="/css/dashboard.css" rel="stylesheet" />
+     <%--<link href="/css/style.css" rel="stylesheet" />--%>
+
+</head>
+
+<body>
+    <form name="f" runat="server">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header toggle">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand  collapsed" data-toggle="collapse" href="\sys\chc">Enterprise Information Portal</a>
+                </div>
+                <div class="navbar-header-l utoggle">
+                    <a class="navbar-brand  collapsed" data-toggle="collapse" href="\sys\chc">Enterprise Information Portal</a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-left">
+
+
+                        <li><a href="#">采购部</a>
+                            <ul class="sub-menu">
+                                <li><a href="report1.aspx">供应商情况</a></li>
+                                <li><a href="report5.aspx">採購月報-物輔料漲跌幅表</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a href="#">行销部</a>
+                            <ul class="sub-menu">
+                                <li><a href="report2.aspx">客户情况</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">生管课</a>
+                            <ul class="sub-menu">
+                                <li><a href="report3.aspx">产品生产情况</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">设备课</a>
+                            <ul class="sub-menu">
+                                <li><a href="report6.aspx">設備保養校正單彙整表</a></li>
+                                <li><a href="report7.aspx">設備維修單彙整表</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">其它</a>
+                            <ul class="sub-menu">
+                                <li><a href="report4.aspx">生产报废情况</a></li>
+                            </ul>
+                        </li>
+                        <%--<asp:Literal ID="Literal1" runat="server"></asp:Literal>
+            <asp:Literal ID="Literal2" runat="server"></asp:Literal>
+            <asp:Literal ID="Literal3" runat="server"></asp:Literal>			
+            <asp:Literal ID="Literal4" runat="server"></asp:Literal>
+            <asp:Literal ID="Literal5" runat="server"></asp:Literal>--%>
+
+                        <%-- <li>
+            <asp:LinkButton ID="lbtThoat" runat="server" OnClick="lbtThoat_Click"><i class="icon-key"></i>Logout</asp:LinkButton></li>--%>
+                    </ul>
+
+                </div>
+
+
+            </div>
+        </nav>
+
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+
+        <!-- Bootstrap core JavaScript
+    ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+    </form>
+
+</body>
+</html>

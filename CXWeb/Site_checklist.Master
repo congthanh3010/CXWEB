@@ -1,0 +1,174 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site_checklist.Master.cs" Inherits="CXWeb.Site_checklist" %>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>點檢表</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="/css/checklist_dashboard.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/style2.css" />
+    <script type="text/javascript">
+        var mobileAgent = new Array("iphone", "ipod", "ipad", "android", "mobile", "blackberry", "webos", "incognito", "webmate", "bada", "nokia", "lg", "ucweb", "skyfire");
+        var browser = navigator.userAgent.toLowerCase();
+        var isMobile = false;
+        //for (var i = 0; i < mobileAgent.length; i++) {
+        //    if (browser.indexOf(mobileAgent[i]) != -1) {
+        //        isMobile = true;
+        //        //alert(mobileAgent[i]);  
+        //        location.href = 'index_mobile';
+        //        break;
+        //    }
+        //}
+
+        function get(Url) {
+            //document.frames[0].location.href =Url; 
+            document.getElementById("f1").src = Url;
+        }
+    </script>
+    <script type="text/javascript">
+        if (document.getElementById) { //DynamicDrive.com change
+            document.write('<style type="text/css">\n')
+            document.write('.submenu{display: none;}\n')
+            document.write('</style>\n')
+        }
+        function SwitchMenu(obj) {
+            if (document.getElementById) {
+                var el = document.getElementById(obj);
+                var ar = document.getElementById("menu").getElementsByTagName("span"); //DynamicDrive.com change
+                if (el.style.display != "block") { //DynamicDrive.com change
+                    /* for (var i=0; i<ar.length; i++){
+                    if (ar[i].className=="submenu") //DynamicDrive.com change
+                    ar[i].style.display = "none";
+                    } */
+                    el.style.display = "block";
+                } else {
+                    el.style.display = "none";
+                }
+            }
+        }
+    </script>
+  <%-- <style type="text/css">
+        .GVFixedHeader
+        {
+            font-weight: bold;
+            background-color: Green;
+            position: relative;
+            /*top: expression(this.parentNode.parentNode.parentNode.scrollTop-1);*/
+            top:expression(this.offsetParent.scrollTop);
+	        z-index: 10;
+        }
+        .GridViewContainer
+        {
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+    </style>--%>
+    <script type="text/javascript" language="javascript"> 
+    var orgTop = 0; 
+    $(document).scroll(function() { 
+     var id = $("tr:.header").get(0); 
+     var offset = $(id).offset(); 
+     var elPosition = $(id).position(); 
+     var elWidth = $(id).width(); 
+     var elHeight = $(id).height(); 
+     if (orgTop == 0) { 
+      orgTop = elPosition.top; 
+     } 
+     if ($(window).scrollTop() <= orgTop) { 
+      id.style.position = 'relative'; 
+      id.style.top = 'auto'; 
+      id.style.width = 'auto'; 
+      id.style.height = 'auto'; 
+     } 
+     else { 
+      id.style.position = 'absolute'; 
+      id.style.top = $(window).scrollTop() + 'px'; 
+      id.style.width = elWidth + 'px'; 
+      id.style.height = elHeight + 'px'; 
+
+     } 
+    }); 
+</script>
+    <style type="text/css">
+         /*body {
+            	margin: 0 auto;
+                background-color:#c8dcf4;
+         }
+       #left
+       {
+           width:14%;
+           height:800px;
+           float:left;
+           border:1px;
+           border-color:white;
+           border-style:solid;
+       }
+        #right
+       {
+           width:95%;
+           height:800px;
+            border:1px;
+           border-color:white;
+            border-style:solid;
+            border-right:0px;
+       }
+         #top {
+            width:100%;
+            height:80px;
+            background-image:url("images/banner.png");
+         }*/
+         #menu_Title {
+            width:100%;
+            height:50px;
+            background-image: url('/images/menu_title.png'); background-repeat: repeat-x;
+            color:white;            
+         }
+        
+    </style>
+</head>
+<body style="padding:0px";">
+     <%-- <div class="top" style=" z-index: 3">
+          	
+        			<a href="http://eip.cxtechnology.vn:8080/CXHOME/login">
+        			<img src="/image/logo3_1.jpg"/></a>
+        		
+        </div>
+   
+        <div class="top" style="background-image: url(/image/logo3_2.jpg); background-size: cover; background-position:left;left:135px;">
+        </div>--%>
+
+        <div id="menu_Title">       
+
+            <table style="width:100%  ;height:50px;font-size:16px;font-weight:bold;">
+                <tr>
+                    <td  style="text-align:left">點檢人 Người điểm kiểm：<asp:Label ID="labLoginName" runat="server"></asp:Label></td>
+                    <td  style="text-align:right">
+                        <a href="login.aspx" style="color: white; margin-left: 20px;">登出/Đăng xuất</a></td>
+                </tr>
+                <tr>
+                      <td  style="text-align:left"><asp:Label ID="Labdate" runat="server"></asp:Label></td>
+                </tr>
+            </table>
+        </div>
+      
+     <form name="f" runat="server">
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+         
+        </asp:ContentPlaceHolder>
+    </form>
+</body>
+</html>

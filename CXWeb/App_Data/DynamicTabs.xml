@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<root>
+  <items>
+    <ItemID>1</ItemID>
+    <TabName>Tab 1</TabName>
+    <Description>Tab 1</Description>
+    <ControlURL>Controls/Tab1.ascx</ControlURL>
+    <SortOrder>1</SortOrder>
+    <IsVisible>1</IsVisible>
+  </items>
+  <items>
+    <ItemID>2</ItemID>
+    <TabName>Tab 2</TabName>
+    <Description>
+      Tab 2
+    </Description>
+    <ControlURL>Controls/Tab2.ascx</ControlURL>
+    <SortOrder>2</SortOrder>
+    <IsVisible>1</IsVisible>
+  </items>
+  <items>
+    <ItemID>3</ItemID>
+    <TabName>Tab 3</TabName>
+    <Description>
+      Tab 3
+    </Description>
+    <ControlURL>Controls/Tab3.ascx</ControlURL>
+    <SortOrder>3</SortOrder>
+    <IsVisible>1</IsVisible>
+  </items>
+  <items>
+    <ItemID>4</ItemID>
+    <TabName>Tab 4</TabName>
+    <Description>
+      Tab 4
+    </Description>
+    <ControlURL>Controls/Tab4.ascx</ControlURL>
+    <SortOrder>4</SortOrder>
+    <IsVisible>1</IsVisible>
+  </items>
+  <items>
+    <ItemID>5</ItemID>
+    <TabName>Tab 5</TabName>
+    <Description>
+      Tab 5
+    </Description>
+    <ControlURL>Controls/Tab5.ascx</ControlURL>
+    <SortOrder>5</SortOrder>
+    <IsVisible>1</IsVisible>
+  </items>
+</root>

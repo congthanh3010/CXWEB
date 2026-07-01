@@ -1,0 +1,11 @@
+link server
+\\10.10.20.251\it\
+Link Mr Hieu
+\\10.10.20.251\it\???DEV\DEV
+IT software
+\\10.10.20.251\Software\1 IT Soft\1 SQL
+Info SQL may chu
+DB EIP 11
+IP : 10.10.20.11  
+User : sa
+Pass : sa@WEB

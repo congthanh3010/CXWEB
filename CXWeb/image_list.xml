@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfImageUrl xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ImageUrl>
+    <index>0</index>
+    <page>1</page>
+    <url>https://cdn.tuoitre.vn/thumb_w/586/2020/4/1/cap-nhat-covid19-viet-nam-1585698504358271113294.jpg</url>
+  </ImageUrl>
+  <ImageUrl>
+    <index>1</index>
+    <page>1</page>
+    <url>https://cdn.tuoitre.vn/thumb_w/980/2020/3/31/cach-ly-xa-hoi-tu-0h-ngay-14-15856466219281253706451.jpg</url>
+  </ImageUrl>
+  <ImageUrl>
+    <index>2</index>
+    <page>1</page>
+    <url />
+  </ImageUrl>
+</ArrayOfImageUrl>

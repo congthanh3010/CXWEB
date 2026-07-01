@@ -1,0 +1,29 @@
+## .gitignore cho ASP.NET / .NET
+
+# Build output
+bin/
+obj/
+*.user
+*.suo
+.vs/
+
+# NuGet packages
+packages/
+*.nupkg
+project.lock.json
+
+# Publish output
+publish/
+PublishProfiles/
+
+# Logs & temp
+*.log
+*.tmp
+Thumbs.db
+
+# Secrets (QUAN TRỌNG — không push lên GitHub)
+appsettings.Development.json
+appsettings.Production.json
+*.pfx
+*.p12
+secrets.json

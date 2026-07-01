@@ -1,0 +1,153 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="CXWeb.Site" %>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>管理報表</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="/css/dashboard.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/style2.css" />
+    <script type="text/javascript">
+        var mobileAgent = new Array("iphone", "ipod", "ipad", "android", "mobile", "blackberry", "webos", "incognito", "webmate", "bada", "nokia", "lg", "ucweb", "skyfire");
+        var browser = navigator.userAgent.toLowerCase();
+        var isMobile = false;
+        //for (var i = 0; i < mobileAgent.length; i++) {
+        //    if (browser.indexOf(mobileAgent[i]) != -1) {
+        //        isMobile = true;
+        //        //alert(mobileAgent[i]);  
+        //        location.href = 'index_mobile';
+        //        break;
+        //    }
+        //}
+
+        function get(Url) {
+            //document.frames[0].location.href =Url; 
+            document.getElementById("f1").src = Url;
+        }
+    </script>
+    <script type="text/javascript">
+        if (document.getElementById) { //DynamicDrive.com change
+            document.write('<style type="text/css">\n')
+            document.write('.submenu{display: none;}\n')
+            document.write('</style>\n')
+        }
+        function SwitchMenu(obj) {
+            if (document.getElementById) {
+                var el = document.getElementById(obj);
+                var ar = document.getElementById("menu").getElementsByTagName("span"); //DynamicDrive.com change
+                if (el.style.display != "block") { //DynamicDrive.com change
+                    /* for (var i=0; i<ar.length; i++){
+                    if (ar[i].className=="submenu") //DynamicDrive.com change
+                    ar[i].style.display = "none";
+                    } */
+                    el.style.display = "block";
+                } else {
+                    el.style.display = "none";
+                }
+            }
+        }
+    </script>
+   
+</head>
+<body style="padding:0px";">
+      <div class="top" style=" z-index: 3">
+          	
+        			<%--<a href="http://eip.cxtechnology.vn:8080/CXHOME/login">--%>
+                     <a href="http://eip.cxtechnology.vn/sys/main.aspx">
+        			<img src="/image/logo3_1.jpg"/></a>
+        		
+        </div>
+   
+        <div class="top" style="background-image: url(/image/logo3_2.jpg); background-size: cover; background-position:left;left:135px;">
+        </div>
+
+    <%-- <div class="top" style="background-image: url(/image/logo3.jpg); background-size: cover; background-position:left;">
+        </div>--%>
+   
+     <%--   <div style="position: relative; width: 110px; height: 32px; top: 15px; bottom: 0px; z-index: 3; float: right;">
+            <a style="font-size: 14px; color: #FFF; font-weight: bold;" target="_blank" href="http://erp.cxtechnology.com/tiptop.html#">ERP登錄(VN)</a><br>
+            <a style="font-size: 14px; color: #FFF; font-weight: bold;" target="_blank" href="http://10.10.30.22/tiptop.html#">ERP登錄(SH)</a><br>
+            <a style="font-size: 14px; color: #FFF; font-weight: bold;" target="_blank" href="http://www.cxtechnology.com:10021">電子郵件</a><br>
+            <a style="font-size: 14px; color: #FFF; font-weight: bold;" target="_blank" href="http://eso.cxtechnology.com:8086/NaNaWeb/">電子檢核</a>
+        </div>--%>
+    <div id="menu" class="menu"  style="font-family:Arial, Helvetica, sans-serif";>
+      <%--  <a style="color: #C8DAF2; position: relative; top: 16px; left: 8px;" class="menutitle" href="http://eip.cxtechnology.vn:8080/CXHOME/index">電子簽核狀況查詢</a><br>
+        <a style="color: #C8DAF2; position: relative; top: 22px; left: 8px;" class="menutitle" href="http://eip.cxtechnology.vn:8080/CXHOME/index">PLC查詢</a>--%>
+        <div style="color: #C8DAF2; position: relative; top: 26px; left: 8px;" class="menutitle" onclick="SwitchMenu('sub1')">部門報表查詢</div>
+        <span style="margin-bottom: 10px; letter-spacing: 1px;" class="<%=code_menu%>" id="sub1">
+            
+
+            <div style="position: relative; left: 30px; top: 20px;" class="menutitle1" onclick="SwitchMenu('sub2')">採購部</div>
+            <span style="margin-bottom: 0px; white-space: nowrap; letter-spacing: 1px;" class="submenu" id="sub2">
+                <a style="position: relative; left: 48px; font-size: 13px; color: #C8DAF2; top: 18px; text-decoration: none" href="report5.aspx">採購月報-物輔料漲跌幅表</a><br>
+                <a style="position: relative; left: 48px; font-size: 13px; color: #C8DAF2; top: 18px; text-decoration: none" href="report16.aspx">供應商議降價與價格本比對表</a><br>
+            </span>
+            <div style="position: relative; left: 30px; top: 20px;" class="menutitle1" onclick="SwitchMenu('sub4')">生管課</div>
+            <span style="margin-bottom: 0px; letter-spacing: 1px;" class="submenu" id="sub4">
+                <a style="position: relative; left: 48px; font-size: 13px; color: #C8DAF2; top: 18px; text-decoration: none" href="report8.aspx">越南廠稼動率月報表</a><br>
+            </span>
+
+            <div style="position: relative; left: 30px; top: 20px;" class="menutitle1" onclick="SwitchMenu('sub8')">技術部</div>
+            <span style="margin-bottom: 0px; letter-spacing: 1px;" class="submenu" id="sub8">
+                <a style="position: relative; left: 48px; font-size: 13px; color: #C8DAF2; top: 18px; text-decoration: none" href="report28.aspx">修模耗時前三名之原因</a><br>
+            </span>
+
+            <div style="position: relative; left: 30px; top: 20px;" class="menutitle1" onclick="SwitchMenu('sub5')">設備課</div>
+            <span style="margin-bottom: 0px; letter-spacing: 1px;" class="submenu" id="sub5">
+                <a style="position: relative; left: 48px; font-size: 13px; color: #C8DAF2; top: 18px; text-decoration: none" href="report6.aspx">設備保養校正單彙整表</a><br>
+                <a style="position: relative; left: 48px; font-size: 13px; color: #C8DAF2; top: 18px; text-decoration: none" href="report7.aspx">設備維修單彙整表</a><br>
+                <a style="position: relative; left: 48px; font-size: 13px; color: #C8DAF2; top: 18px; text-decoration: none" href="report21.aspx">設備故障次數與平均生產量</a><br>
+                <a style="position: relative; left: 48px; font-size: 13px; color: #C8DAF2; top: 18px; text-decoration: none" href="report29.aspx">設備保養單報表查詢</a><br>
+            </span>
+            <div style="position: relative; left: 30px; top: 20px;" class="menutitle1" onclick="SwitchMenu('sub6')">總務課</div>
+            <span style="margin-bottom: 0px; letter-spacing: 1px;" class="submenu" id="sub6">
+                <a style="position: relative; left: 48px; font-size: 13px; color: #C8DAF2; top: 18px; text-decoration: none" href="report9.aspx">國內公務外出表統計表</a><br>
+            </span>
+            <%-- <div style="position: relative; left: 30px; top: 20px;" class="menutitle1" onclick="SwitchMenu('sub8')">品保部</div>
+            <span style="margin-bottom: 0px; letter-spacing: 1px;" class="submenu" id="sub8">
+                <a style="position: relative; left: 48px; font-size: 13px; color: #C8DAF2; top: 18px; text-decoration: none" href="http://eip.cxtechnology.vn:8080/CXHOME/Equipment_tuihuo">退火硬度檢驗表</a><br>
+            </span>--%>
+            <div style="position: relative; left: 30px; top: 20px;" class="menutitle1" onclick="SwitchMenu('sub7')">北科大管報</div>
+            <span style="margin-bottom: 0px; letter-spacing: 1px;" class="submenu" id="sub7">
+                <a style="position: relative; left: 48px; font-size: 13px; color: #C8DAF2; top: 18px; text-decoration: none" href="report11.aspx">(1)技術人員之換模調機耗時</a><br>
+                <a style="position: relative; left: 48px; font-size: 13px; color: #C8DAF2; top: 18px; text-decoration: none" href="report10.aspx">(2)機台之換模耗時</a><br>
+                <%--<a style="position: relative; left: 48px; font-size: 13px; color: #C8DAF2; top: 18px; text-decoration: none" href="http://eip.cxtechnology.vn:8080/CXHOME/Equipment_zhizao05">(5)機台與現場技術人員之調機耗時</a><br>--%>
+                <%--<a style="position: relative; left: 48px; font-size: 13px; color: #C8DAF2; top: 18px; text-decoration: none" href="http://eip.cxtechnology.vn:8080/CXHOME/Equipment_zhizao06">(6)機台與機種之調機次數</a><br>--%>
+                <%--<a style="position: relative; left: 48px; font-size: 13px; color: #C8DAF2; top: 18px; text-decoration: none" href="report20.aspx">(7)單打、連續鍛打機台超打修模次數</a><br>--%>
+                <%--<a style="position: relative; left: 48px; font-size: 13px; color: #C8DAF2; top: 18px; text-decoration: none" href="report14.aspx">(8)單打、連續鍛打之修模次數</a><br>--%>
+                <a style="position: relative; left: 48px; font-size: 13px; color: #C8DAF2; top: 18px; text-decoration: none" href="report22.aspx">(9)機種與機台噸數之修模次數</a><br>
+                <a style="position: relative; left: 48px; font-size: 13px; color: #C8DAF2; top: 18px; text-decoration: none" href="report23.aspx">(10)機台與機种之修模次數</a><br>
+                <a style="position: relative; left: 48px; font-size: 13px; color: #C8DAF2; top: 18px; text-decoration: none" href="report24.aspx">(11)機種與原料之修模次數</a><br>
+                <a style="position: relative; left: 48px; font-size: 13px; color: #C8DAF2; top: 18px; text-decoration: none" href="report25.aspx">(12)現場技術人員之修模次數</a><br>
+                <a style="position: relative; left: 48px; font-size: 13px; color: #C8DAF2; top: 18px; text-decoration: none" href="report15.aspx">(15)修模耗時前三名之原因</a><br>
+                <a style="position: relative; left: 48px; font-size: 13px; color: #C8DAF2; top: 18px; text-decoration: none" href="report26.aspx">(16)機種與機台噸數之修模耗時</a><br>
+                <a style="position: relative; left: 48px; font-size: 13px; color: #C8DAF2; top: 18px; text-decoration: none" href="report27.aspx">(17)模套、模具與機種修模耗時</a><br>
+                <a style="position: relative; left: 48px; font-size: 13px; color: #C8DAF2; top: 18px; text-decoration: none" href="report18.aspx">(18)維修人員之修模耗時</a><br>
+                <a style="position: relative; left: 48px; font-size: 13px; color: #C8DAF2; top: 18px; text-decoration: none" href="report19.aspx">(26)維修技術員之設備維修耗時</a><br>
+                <a style="position: relative; left: 48px; font-size: 13px; color: #C8DAF2; top: 18px; text-decoration: none" href="report12.aspx">(27)設備機齡之設備故障次數</a><br>
+                <a style="position: relative; left: 48px; font-size: 13px; color: #C8DAF2; top: 18px; text-decoration: none" href="report13.aspx">(28)設備移入年分之設備故障次數</a><br>
+                <a style="position: relative; left: 48px; font-size: 13px; color: #C8DAF2; top: 18px; text-decoration: none" href="report17.aspx">(29)機台噸數之設備故障次數</a><br>
+            </span>
+        </span>
+    </div>
+     <form name="f" runat="server">
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+           
+        </asp:ContentPlaceHolder>
+    </form>
+</body>
+</html>

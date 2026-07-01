@@ -1,0 +1,8 @@
+cấu hình mail để gửi HDDT như sau:
+địa chỉ mail: einvoice_vn@mail.cxtechnology.com
+pass: einvoice2020vn
+smtp server: mail.cxtechnology.com
+port: 25
+
+
+

@@ -1,0 +1,124 @@
+﻿USE [PLC_REPORT]
+GO
+
+/****** Object:  StoredProcedure [dbo].[sp_MachineWorkingTime]    Script Date: 1/13/2021 8:04:44 AM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE PROC [dbo].[sp_MachineWorkingTime]
+	@date1 DATETIME,
+	@date2 DATETIME,
+	@date3 DATETIME
+AS
+BEGIN
+	IF OBJECT_ID('tempdb..#time') IS NOT NULL BEGIN DROP TABLE #time END
+	CREATE TABLE #time (dshift VARCHAR(10), timline DATETIME NULL)
+	INSERT INTO #time (dshift, timline) VALUES ('CA1', @date1)
+	INSERT INTO #time (dshift, timline) VALUES ('CA1', @date2)
+	INSERT INTO #time (dshift, timline) VALUES ('CA2', @date2)
+	INSERT INTO #time (dshift, timline) VALUES ('CA2', @date3)
+
+	IF OBJECT_ID('tempdb..#mstat') IS NOT NULL BEGIN DROP TABLE #mstat END
+	CREATE TABLE #mstat (
+		_index INT NOT NULL,
+		Num INT NOT NULL,
+		DepId VARCHAR(10) NOT NULL,
+		DepName NVARCHAR(20),
+		MachineId VARCHAR(20) NOT  NULL,
+		dShift NVARCHAR(10) NOT NULL,
+		dStTimeStart DATETIME,
+		dStatus NVARCHAR(10),
+		dStTime INT);
+
+	WITH raw_data AS (
+		SELECT pml.Num, pml.DepId, pml.DepName, pml.MachineId, ms.dShift,
+			   ms.dStTimeStart, ms.dStatus, ms.dStTime
+		FROM PLC_MachineList pml
+		LEFT JOIN MACHINE_STATUS ms ON ms.dMachine = pml.MachineId
+		WHERE pml.MStatus = 'Show'
+		AND ms.dStTimeStart >= @date1 AND ms.dStTimeStart <= @date3
+	),
+	no_report AS (
+		SELECT pml.Num, pml.DepId, pml.DepName, pml.MachineId, 'CA1' AS dShift, 
+			   CAST(NULL AS DATETIME) AS dStTimeStart, CAST(NULL AS NVARCHAR(10)) AS dStatus, 720 AS dStTime
+		FROM PLC_MachineList pml
+		WHERE pml.MStatus = 'Show'
+		AND NOT EXISTS (SELECT 1 FROM raw_data rd WHERE rd.MachineId = pml.MachineId)
+		UNION ALL
+		SELECT pml.Num, pml.DepId, pml.DepName, pml.MachineId, 'CA2' AS dShift, 
+			   CAST(NULL AS DATETIME) AS dStTimeStart, CAST(NULL AS NVARCHAR(10)) AS dStatus, 720 AS dStTime
+		FROM PLC_MachineList pml
+		WHERE pml.MStatus = 'Show'
+		AND NOT EXISTS (SELECT 1 FROM raw_data rd WHERE rd.MachineId = pml.MachineId)
+	),
+	timeline AS (
+		SELECT mc.Num, mc.DepId, mc.DepName, mc.MachineId, t.dshift, t.timline AS dStTimeStart,
+			   CASE WHEN t.dshift = 'CA1' AND t.timline = @date1 THEN dms.dStatus
+					WHEN t.dshift = 'CA2' AND t.timline = @date2 THEN nms.dStatus
+			   ELSE NULL END AS dStatus, 0 AS dStTime
+		FROM (SELECT DepId, DepName, Num, MachineId FROM raw_data GROUP BY DepId, DepName, Num, MachineId) mc
+		LEFT JOIN #time t ON 1 = 1
+		LEFT JOIN (
+			SELECT dMachine, MAX(dStTimeStart) maxTime FROM MACHINE_STATUS
+			WHERE dStTimeStart <= @date1
+			GROUP BY dMachine) dmax ON dmax.dMachine = mc.MachineId
+		LEFT JOIN MACHINE_STATUS dms ON dms.dMachine = dmax.dMachine AND dmax.maxTime = dms.dStTimeStart
+		LEFT JOIN (
+			SELECT dMachine, MAX(dStTimeStart) maxTime FROM MACHINE_STATUS
+			WHERE dStTimeStart <= @date2
+			GROUP BY dMachine) nmax ON nmax.dMachine = mc.MachineId
+		LEFT JOIN MACHINE_STATUS nms ON nms.dMachine = nmax.dMachine AND nmax.maxTime = nms.dStTimeStart
+	),
+	all_status AS (
+		SELECT ROW_NUMBER() OVER (PARTITION BY DepId, MachineId, dShift ORDER BY dStTimeStart DESC) _index, ms.*
+		FROM (
+			SELECT * FROM raw_data
+			UNION ALL
+			SELECT * FROM timeline
+			UNION ALL
+			SELECT * FROM no_report
+		) ms
+	)
+
+	INSERT INTO #mstat (_index, Num, DepId, DepName, MachineId, dShift, dStTimeStart, dStatus, dStTime)
+	SELECT _index, Num, DepId, DepName, MachineId, dShift, dStTimeStart, dStatus, dStTime
+	FROM all_status
+	ORDER BY DepId, Num, dShift, _index
+
+	DECLARE @time DATETIME
+	DECLARE @span INT
+	UPDATE #mstat SET
+		@span = CASE WHEN _index = 1 OR dStTimeStart IS NULL THEN dStTime ELSE DATEDIFF(mi, dStTimeStart, @time) END,
+		dStTime = @span,
+		@time = CASE WHEN dStTimeStart IS NULL THEN @time ELSE dStTimeStart END;
+
+	WITH plc AS (
+		SELECT MACHINE_CODE, 'CA1' AS dShift, SUM(CASE WHEN [State] = 1 THEN 1 ELSE 0 END) WTime
+		FROM PLC_VL
+		WHERE TTime >= @date1 AND TTime <= @date2
+		GROUP BY MACHINE_CODE
+		UNION ALL
+		SELECT MACHINE_CODE, 'CA2' AS dShift, SUM(CASE WHEN [State] = 1 THEN 1 ELSE 0 END) WTime
+		FROM PLC_VL
+		WHERE TTime >= @date1 AND TTime <= @date2
+		GROUP BY MACHINE_CODE
+	)
+	SELECT ms.DepId, ms.DepName, ms.MachineId, CONVERT(VARCHAR(10),@date1,120) AS WDate, ms.dShift, 
+		   ISNULL(plc.WTime,0) AS plcWTime, 
+		   720 - ISNULL(plc.wTime,0) AS plcNTime, ms.NTime,
+		   720 - ISNULL(plc.wTime,0) - ISNULL(ms.NTime,0) AS Diff
+	FROM (
+		SELECT DepId, DepName, Num, MachineId, dShift, 
+			   SUM(CASE WHEN ISNULL(dStatus,'') <> 'A01' THEN dStTime END) AS NTime 
+		FROM #mstat
+		GROUP BY DepId, DepName, Num, MachineId, dShift
+	) ms
+	LEFT JOIN plc ON plc.MACHINE_CODE = ms.MachineId AND plc.dShift = ms.dShift
+	ORDER BY ms.DepId, ms.Num, ms.dShift
+END
+GO
+
+

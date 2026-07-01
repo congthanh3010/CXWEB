@@ -1,0 +1,148 @@
+﻿@charset "utf-8";
+/* CSS Document */
+*{
+	margin:0px;
+	padding:0px;
+}
+#head{
+	width:1034px;
+	height:246px;
+	background:#EBEBEB url(/image/header.jpg) center 0px no-repeat;
+	margin:0 auto;
+}
+#head li{
+	list-style:none;
+	float:left;
+	background:url(/image/forumMenuBg.gif) right
+	center no-repeat;
+}
+#head ul li ul li{
+	float:none;
+	width:154px;
+	margin:0;
+}
+.head{
+	height:33px;
+	background:#383838;
+	line-height:33px;
+}
+.head a{
+	color:#FFFFFF;
+	font-size:14px;
+	text-decoration:none;
+	/*font-weight:bold;*/
+	display:block;
+	padding:0 15px;
+}
+.head a:hover{
+	background:url(/image/forumMenuBg.jpg) 0 0 repeat-x;
+}
+
+#body{
+	height:344px;
+	width:1034px;
+	background:#EBEBEB;
+	margin:0 auto;
+}
+#foot{
+	height:45px;
+	width:1034px;
+	background:#FFFFFF;
+	margin:0 auto;
+	font-size:14px;
+}
+/*
+#left{
+	width:620px;
+	height:344px;
+	border:1px #102950 solid;
+	float:left;
+	font-size:14px;
+	padding-left:10px;
+}
+#left p{
+	height:29px;
+	background:url(/image/icon-03.jpg) 0 0 repeat-x;
+	color:#FFFFFF;
+	line-height:29px;
+	font-size:14px;
+	
+	padding-left:25px;
+}
+#left img{
+	border:2px #FFFFFF solid;
+}
+#left dl{
+	float:left;
+	padding-left:40px;
+	padding:22px 18px;
+}
+#left dd{
+	font-size:14px;
+	
+}
+#left dt{
+	
+}
+#left dd a{
+	font-size:14px;
+	text-decoration:none;
+	color:#000;
+	font-weight:bold;
+	padding-left:15px;
+}
+#left dt a:hover img{
+	border:2px #FF0000 solid;
+}
+*/
+
+#right{
+	width:1034px;
+	height:344px;
+	border:1px #000000 solid;
+	
+	background:#CDD4DC;
+	font-size:14px;
+}
+#right p{
+	height:29px;
+	background:url(/image/icon-03.jpg) 0 0 repeat-x;
+	color:#FFFFFF;
+	line-height:29px;
+	font-size:14px;
+	/*font-weight:bold;*/
+	padding-left:25px;
+}
+#right img{
+	border:2px #FFFFFF solid;
+}
+#right dl{
+	float:left;
+	padding-left:40px;
+	padding:19px 31px;
+}
+#right dd{
+	font-size:14px;
+}
+#right dt{
+	
+}
+#right dd a{
+	font-size:14px;
+	text-decoration:none;
+	color:#000;
+	font-weight:bold;
+	padding-left:15px;
+}
+#right dt a:hover img{
+	border:2px #FF0000 solid;
+}
+.icon01{
+	padding-left:30px;
+	background:url(/image/icon-01.jpg) 10px 0 no-repeat;
+	padding-bottom:4px;
+}
+.icon02{
+	padding-left:30px;
+	background:url(/image/icon-02.jpg) 10px 0 no-repeat;
+}

@@ -1,0 +1,71 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site_plc.master.cs" Inherits="CXWeb.Site_plc" %>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+   
+    <title>8opc</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+    <!-- Custom styles for this template -->
+    <link href="/css/dashboard.css" rel="stylesheet" type="text/css"/>
+  </head>
+
+  <body>
+      <form name="f" runat="server">
+            <nav class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container-fluid">
+                    <div class="navbar-header toggle">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="http://www.cxtechnology.com">CXTECHNOLOGY</a>
+                    </div>
+                    <div class="navbar-header-l utoggle">
+                        <a class="navbar-brand" href="http://www.cxtechnology.com">CXTECHNOLOGY</a>
+                    </div>
+                    <div id="navbar" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav navbar-left">
+
+
+
+                            <%--<asp:Literal ID="Literal1" runat="server"></asp:Literal>--%>
+                            <asp:Literal ID="Literal2" runat="server"></asp:Literal>
+                            <asp:Literal ID="Literal3" runat="server"></asp:Literal>
+                            <asp:Literal ID="Literal4" runat="server"></asp:Literal>
+                            <asp:Literal ID="Literal5" runat="server"></asp:Literal>
+                            <asp:Literal ID="Literal6" runat="server"></asp:Literal>
+
+                            <li>
+                                <asp:LinkButton ID="lbtThoat" runat="server" OnClick="lbtThoat_Click"><i class="icon-key"></i>Logout</asp:LinkButton></li>
+                        </ul>
+
+                    </div>
+
+
+                </div>
+            </nav>
+
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+
+            <!-- Bootstrap core JavaScript
+    ================================================== -->
+            <!-- Placed at the end of the document so the pages load faster -->
+        </form>
+
+  </body>
+</html>

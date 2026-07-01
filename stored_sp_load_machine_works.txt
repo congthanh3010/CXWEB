@@ -1,0 +1,32 @@
+﻿ALTER PROCEDURE [dbo].[sp_load_machine_works]
+(
+	@machine_id VARCHAR(15),
+	@begin DATETIME
+)
+AS
+BEGIN
+	IF OBJECT_ID('tempdb..#dataraw') IS NOT NULL BEGIN DROP TABLE #dataraw END
+	SELECT * INTO #dataraw
+	FROM PLC_VL
+	WHERE MACHINE_CODE = @machine_id
+	AND TTime BETWEEN @begin AND GETDATE()
+
+	IF OBJECT_ID('tempdb..#stime') IS NOT NULL BEGIN DROP TABLE #stime END
+	SELECT ROW_NUMBER() OVER(ORDER BY d.TTime) num, d.TTime, d.[State]
+	INTO #stime
+	FROM #dataraw d
+	LEFT JOIN #dataraw d2 ON d2.TTime = DATEADD(mi,-1,d.TTime)
+	WHERE d.[State]<>d2.[State] OR d2.[State] IS NULL
+
+	SELECT ROW_NUMBER() OVER (ORDER BY s.TTime DESC) num, 
+		   LEFT(CONVERT(VARCHAR,s.TTime,120),16) sdate, ISNULL(LEFT(CONVERT(VARCHAR,e.TTime,120),16),'Now') edate, 
+		   DATEDIFF(mi,s.TTime,ISNULL(e.TTime,GETDATE())) total, 
+		   CASE s.[State] WHEN 1 THEN '<td style="background-color: green">' + ISNULL(msc.cCode,'') + '</td>'
+						  WHEN 2 THEN '<td style="background-color: yellow">' + ISNULL(msc.cDesc,'') + '</td>'
+						  WHEN 3 THEN '<td style="background-color: red">' + ISNULL(msc.cDesc,'') + '</td>' END Stat
+	FROM #stime s
+	LEFT JOIN #stime e ON e.num = s.num + 1
+	LEFT JOIN MACHINE_STATUS ms ON ms.dMachine = @machine_id AND ms.dStTimeStart BETWEEN s.TTime AND ISNULL(e.TTime,GETDATE())
+	LEFT JOIN MACHINE_STATUS_CODE msc ON msc.cCode = ms.dStatus
+	ORDER BY s.num DESC
+END
